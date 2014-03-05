@@ -8,7 +8,7 @@ import (
 	"sort"
 )
 
-const MAXDIFF int = 255*255 + 255*255 + 255*255
+const MAXDIFF int = 256*256 + 256*256 + 256*256
 
 type RandomColor struct {
 	Rand float64
@@ -48,32 +48,16 @@ func ColorDiff(c1, c2 color.RGBA) int {
 	return r*r + g*g + b*b
 }
 
-func ChoosePoint(c color.RGBA, available []image.Point, taken map[image.Point]color.RGBA) (i int) {
+type Neighborhood struct {
+	Point image.Point
+	Color color.RGBA
+}
+
+func ChoosePoint(c color.RGBA, available []Neighborhood, taken map[image.Point]color.RGBA) (i int) {
 	best := 0
 	bestDiff := MAXDIFF
-	for a, point := range available {
-		R, G, B := 0, 0, 0
-		found := 0
-		for x := -1; x <= 1; x++ {
-			for y := -1; y <= 1; y++ {
-				neighbor, t := taken[image.Point{point.X + x, point.Y + y}]
-				if t {
-					R += int(neighbor.R)
-					G += int(neighbor.G)
-					B += int(neighbor.B)
-					found += 1
-				}
-			}
-		}
-		// average it out
-		if found <= 0 {
-			continue
-		}
-		R /= found
-		G /= found
-		B /= found
-
-		diff := ColorDiff(c, color.RGBA{uint8(R), uint8(G), uint8(B), 255})
+	for a, n := range available {
+		diff := ColorDiff(c, n.Color)
 		if diff < bestDiff || (diff == bestDiff && rand.Intn(2) == 0) {
 			best = a
 			bestDiff = diff
@@ -82,36 +66,74 @@ func ChoosePoint(c color.RGBA, available []image.Point, taken map[image.Point]co
 	return best
 }
 
-func SetTaken(width, height, chosenIndex int, p image.Point, c color.RGBA, availableArray *[]image.Point, available map[image.Point]bool, taken map[image.Point]color.RGBA) {
+func getNeighborhood(p image.Point, taken map[image.Point]color.RGBA) (n Neighborhood) {
+	// get the colors
+	R, G, B := 0, 0, 0
+	found := 0
+	for x := -1; x <= 1; x++ {
+		for y := -1; y <= 1; y++ {
+			neighbor, t := taken[image.Point{p.X + x, p.Y + y}]
+			if t {
+				R += int(neighbor.R)
+				G += int(neighbor.G)
+				B += int(neighbor.B)
+				found += 1
+			}
+		}
+	}
+	// average it out
+	if found <= 0 {
+		return Neighborhood{p, color.RGBA{0, 0, 0, 0}}
+	}
+	R /= found
+	G /= found
+	B /= found
+
+	return Neighborhood{p, color.RGBA{uint8(R), uint8(G), uint8(B), 255}}
+}
+
+func SetTaken(width, height, chosenIndex int, p image.Point, c color.RGBA, availableArray *[]Neighborhood, available map[image.Point]bool, taken map[image.Point]color.RGBA) {
 	taken[p] = c
 	available[p] = false
+
+	// update neighborhoods close to this point
+	for _, n := range *availableArray {
+		for x := -1; x <= 1; x++ {
+			for y := -1; y <= 1; y++ {
+				if n.Point.X+x == p.X && n.Point.Y == p.Y {
+					neigh := getNeighborhood(n.Point, taken)
+					n.Color = neigh.Color
+				}
+			}
+		}
+	}
 
 	// set next x point
 	newPx := image.Point{p.X + 1, p.Y}
 	_, haveTaken := taken[newPx]
 	if newPx.X < width && available[newPx] != true && !haveTaken {
-		*availableArray = append(*availableArray, newPx)
+		*availableArray = append(*availableArray, getNeighborhood(newPx, taken))
 		available[newPx] = true
 	}
 	// set next -x point
 	newPx = image.Point{p.X - 1, p.Y}
 	_, haveTaken = taken[newPx]
 	if newPx.X >= 0 && available[newPx] != true && !haveTaken {
-		*availableArray = append(*availableArray, newPx)
+		*availableArray = append(*availableArray, getNeighborhood(newPx, taken))
 		available[newPx] = true
 	}
 	// set next y point
 	newPy := image.Point{p.X, p.Y + 1}
 	_, haveTaken = taken[newPy]
 	if newPy.Y < height && available[newPy] != true && !haveTaken {
-		*availableArray = append(*availableArray, newPy)
+		*availableArray = append(*availableArray, getNeighborhood(newPy, taken))
 		available[newPy] = true
 	}
 	// set next -y point
 	newPy = image.Point{p.X, p.Y - 1}
 	_, haveTaken = taken[newPy]
 	if newPy.Y >= 0 && available[newPy] != true && !haveTaken {
-		*availableArray = append(*availableArray, newPy)
+		*availableArray = append(*availableArray, getNeighborhood(newPy, taken))
 		available[newPy] = true
 	}
 }

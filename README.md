@@ -33,6 +33,14 @@ go run main/pointillist.go [-file="pointillist"] [-width=512] [-height=256]
 
 ![point](https://f.cloud.github.com/assets/1121616/2332998/69fe6f6e-a462-11e3-98c4-b59d00ea00e1.png)
 
+### Installation
+
+To install, run:
+
+    go get github.com/hermanschaaf/allrgb
+
+Now you can run any of the commands listed above from your $GOHOME/src/github.com/hermanschaaf/allrgb.
+
 ### The Algorithm
 
 The algorithm is inspired by [Joco's blog post](http://joco.name/2014/03/02/all-rgb-colors-in-one-image/). The idea is the following:

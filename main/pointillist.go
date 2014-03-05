@@ -34,7 +34,7 @@ func main() {
 	pallete := allrgb.GeneratePallete(width, height)
 	m := image.NewRGBA(image.Rect(0, 0, width, height))
 
-	availableArray := []image.Point{}
+	availableArray := []allrgb.Neighborhood{}
 
 	available := make(map[image.Point]bool)
 	taken := make(map[image.Point]color.RGBA)
@@ -59,8 +59,8 @@ func main() {
 		chosenIndex := allrgb.ChoosePoint(c, availableArray, taken)
 		p := availableArray[chosenIndex]
 		// set chosen point as unavailable
-		allrgb.SetTaken(width, height, chosenIndex, p, c, &availableArray, available, taken)
-		allrgb.DrawPoint(m, p, c)
+		allrgb.SetTaken(width, height, chosenIndex, p.Point, c, &availableArray, available, taken)
+		allrgb.DrawPoint(m, p.Point, c)
 
 		availableArray = append(availableArray[:chosenIndex], availableArray[chosenIndex+1:]...)
 		if len(availableArray) == 0 {
