@@ -9,13 +9,13 @@ This Go program generates images that use every color in the RGB color palette e
 
 It supports different modes. 
 
-#### Tie-dye Landscape
+#### Tie-dye
 
 ```
 go run tiedye.go
 ```
 
-![colors](https://f.cloud.github.com/assets/1121616/2332895/8c614a24-a460-11e3-9dff-1875d20708e1.png)
+![tiedye](https://f.cloud.github.com/assets/1121616/2333097/4357032e-a464-11e3-98ac-08247aba1cf3.png)
 
 #### Flower
 
