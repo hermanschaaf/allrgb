@@ -23,6 +23,8 @@ go run tiedye.go
 go run flower.go
 ```
 
+![flower](https://f.cloud.github.com/assets/1121616/2333178/4cc6d2b6-a466-11e3-950e-165768ebd2b4.png)
+
 #### Pointillist
 
 ```
