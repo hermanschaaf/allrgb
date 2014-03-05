@@ -23,6 +23,8 @@ go run tiedye.go
 go run flower.go
 ```
 
+![flower](https://f.cloud.github.com/assets/1121616/2333178/4cc6d2b6-a466-11e3-950e-165768ebd2b4.png)
+
 #### Pointillist
 
 ```
@@ -76,3 +78,9 @@ func main() {
 ```
 
 If we repeat this process in a loop for every color, we have a program that fills a png image with every color :) 
+
+#### Final word
+
+Change the parameters. Try different constraints. Expirement, make your own, and if you get stuck, ask questions! You can find me at [@ironzeb](https://twitter.com/ironzeb), or read my blog at [IronZebra](http://ironzebra.com).
+
+Personally, I'm going to print one of these [onto a canvas](http://canvaspop.com) very soon!
