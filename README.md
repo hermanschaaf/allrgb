@@ -5,7 +5,7 @@ Go AllRGB Painting Generator
 
  > Look mom, I made art!
 
-This Go program generates images that use every color in the RGB color palette exactly once, and tries to do so in as easthetically-pleasing way as possible.
+This Go program generates images that use every color in the RGB color palette exactly once, and tries to do so in as easthetically-pleasing way as possible. It's inspired by [AllRGB.com](http://allrgb.com/).
 
 It supports different modes. 
 
