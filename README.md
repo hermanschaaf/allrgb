@@ -91,4 +91,4 @@ If we repeat this process in a loop for every color, we have a program that fill
 
 Change the parameters. Try different constraints. Expirement, make your own, and if you get stuck, ask questions! You can find me at [@ironzeb](https://twitter.com/ironzeb), or read my blog at [IronZebra](http://ironzebra.com).
 
-Personally, I'm going to print one of these [onto a canvas](http://canvaspop.com) very soon!
+Personally, I'm going to print one of these [onto a canvas](http://www.shareasale.com/r.cfm?b=204764&u=922421&m=25092&urllink=&afftrack=) very soon!
