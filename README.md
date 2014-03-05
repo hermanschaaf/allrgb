@@ -1,7 +1,7 @@
 Go AllRGB Painting Generator
 ============================
 
-![colors1](https://f.cloud.github.com/assets/1121616/2332908/cb5524c6-a460-11e3-8ef8-851ac3015c01.png)
+![flower 1](https://f.cloud.github.com/assets/1121616/2334111/f4785c06-a474-11e3-9a2f-7b3f51d0411d.png)
 
  > Look mom, I made art!
 
