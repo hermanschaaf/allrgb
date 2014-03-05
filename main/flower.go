@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/hermanschaaf/allrgb"
 	"image"
@@ -10,14 +11,25 @@ import (
 	"os"
 )
 
+var filename string
+var width int
+var height int
+var seed int64
+
 func main() {
-	rand.Seed(1)
+	flag.StringVar(&filename, "file", "flower", "name of the file (.png will be added)")
+	flag.IntVar(&width, "width", 512, "width of the image")
+	flag.IntVar(&height, "height", 256, "height of the image")
+	flag.Int64Var(&seed, "seed", 1, "random seed")
 
-	toimg, _ := os.Create("flower.png")
+	rand.Seed(seed)
+
+	flag.Parse()
+
+	fmt.Println("File will be:", filename+".png")
+
+	toimg, _ := os.Create(filename + ".png")
 	defer toimg.Close()
-
-	width := 512
-	height := 256
 
 	pallete := allrgb.GeneratePallete(width, height)
 	m := image.NewRGBA(image.Rect(0, 0, width, height))
@@ -29,7 +41,7 @@ func main() {
 
 	for i := 0; i < width*height; i++ {
 		if i%500 == 0 {
-			fmt.Println(i * 100 / (width * height))
+			fmt.Print(i*100/(width*height), "..")
 		}
 		c := pallete[i]
 		chosenIndex := allrgb.ChoosePoint(c, availableArray, taken)

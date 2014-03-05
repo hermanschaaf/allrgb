@@ -12,7 +12,7 @@ It supports different modes.
 #### Tie-dye
 
 ```
-go run tiedye.go
+go run main/tiedye.go [-file="tiedye"] [-width=512] [-height=256]
 ```
 
 ![tiedye](https://f.cloud.github.com/assets/1121616/2333097/4357032e-a464-11e3-98ac-08247aba1cf3.png)
@@ -20,7 +20,7 @@ go run tiedye.go
 #### Flower
 
 ```
-go run flower.go
+go run main/flower.go [-file="flower"] [-width=512] [-height=256]
 ```
 
 ![flower](https://f.cloud.github.com/assets/1121616/2333178/4cc6d2b6-a466-11e3-950e-165768ebd2b4.png)
@@ -28,7 +28,7 @@ go run flower.go
 #### Pointillist
 
 ```
-go run pointillist.go
+go run main/pointillist.go [-file="pointillist"] [-width=512] [-height=256]
 ```
 
 ![point](https://f.cloud.github.com/assets/1121616/2332998/69fe6f6e-a462-11e3-98c4-b59d00ea00e1.png)
