@@ -81,6 +81,6 @@ If we repeat this process in a loop for every color, we have a program that fill
 
 #### Final word
 
-Change the parameters. Try different constraints. Expirement, make your own, and if you get stuck, ask questions! You can find me at [@ironzeb](https://twitter.com/ironzeb), or read my blog at (IronZebra)[http://ironzebra.com].
+Change the parameters. Try different constraints. Expirement, make your own, and if you get stuck, ask questions! You can find me at [@ironzeb](https://twitter.com/ironzeb), or read my blog at [IronZebra](http://ironzebra.com).
 
 Personally, I'm going to print one of these [onto a canvas](http://canvaspop.com) very soon!
